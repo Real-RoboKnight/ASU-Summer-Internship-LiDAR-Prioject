@@ -1,0 +1,1000 @@
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
+loop frame number: 1
+Capsule was hit, angle was (0.00, 0.00, 1.00), distance was 3.647195
