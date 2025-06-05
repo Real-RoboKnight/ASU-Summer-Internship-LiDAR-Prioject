@@ -20,16 +20,18 @@ public class IOScript : MonoBehaviour
         unityCamera = Camera.main;
     }
 
+    // Takes in an angle around the camera and the elevation of the ray and calculates the direction vector
     Vector3 CalculateAngle(double theta, double phi)
     {
-        // theta in [0, 2pi] and phi in [-pi. pi]
-        // phi and theta 0 is the +x vector. Increasing theta rotates counterclockwise on the xz plane. Increasing phi rotates counterclockwise up towards +y
+        // The unity x vector is right, y is up, and z is forward. This makes a left handed coordinate system
+        // theta in [0, 2pi] and phi in [0. pi]
+        // phi and theta 0 is the +x vector. Increasing theta rotates counterclockwise on the xz plane. Increasing phi rotates clockwise down from towards +y
         // (cos(θ), sin(θ), sin(φ)).normalize
 
         return new Vector3(
-            (float)Math.Sin(theta),
-            (float)Math.Cos(theta),
-            (float)Math.Sin(phi)
+            (float)(Math.Cos(theta) * Math.Sin(phi)),
+            (float)Math.Cos(phi),
+            (float)(Math.Sin(theta) * Math.Sin(phi))
         ).normalized;
     }
 
@@ -78,7 +80,7 @@ public class IOScript : MonoBehaviour
     {
         if (writer != null)
         {
-            writer.Close();
+            writer.Flush();
         }
     }
 }
