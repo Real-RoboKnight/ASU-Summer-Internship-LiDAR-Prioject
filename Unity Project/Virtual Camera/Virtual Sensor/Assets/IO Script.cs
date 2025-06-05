@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IOScript : MonoBehaviour
 {
-    const double ANGULAR_RESOLUTION = Math.PI / 64;
+    const double ANGULAR_RESOLUTION = Math.PI / 1024;
 
     // TODO: replace hard coded file path
     Camera unityCamera;
@@ -16,7 +16,8 @@ public class IOScript : MonoBehaviour
     void Start()
     {
         print("start");
-        writer = File.CreateText("outputFile.txt");
+        writer = File.CreateText("outputFile.csv");
+        writer.WriteLine("Frame Number,theta,phi,distance");
         unityCamera = Camera.main;
     }
 
@@ -25,7 +26,8 @@ public class IOScript : MonoBehaviour
     {
         // The unity x vector is right, y is up, and z is forward. This makes a left handed coordinate system
         // theta in [0, 2pi] and phi in [0. pi]
-        // phi and theta 0 is the +x vector. Increasing theta rotates counterclockwise on the xz plane. Increasing phi rotates clockwise down from towards +y
+        // phi and theta 0 is the +x vector. Increasing theta rotates counterclockwise on the xz plane.
+        // Increasing phi rotates clockwise down from towards +y
         // (cos(θ), sin(θ), sin(φ)).normalize
 
         return new Vector3(
@@ -35,37 +37,32 @@ public class IOScript : MonoBehaviour
         ).normalized;
     }
 
+    string FormatCSV(double theta, double phi, float distance)
+    {
+        // Frame number, theta, phi, distance (set to 0 for inf)
+        return Time.frameCount + "," + theta + "," + phi + "," + distance;
+    }
+
     // Update is called once per frame. Each frame we should do another point
     void Update()
     {
-        for (phi = Math.PI; phi > -Math.PI; phi -= ANGULAR_RESOLUTION)
+        // Each frame do a vertical scan at a value of theta, starting from the positive y axis down to the negative y axis.
+        for (phi = 0; phi < Math.PI; phi += ANGULAR_RESOLUTION)
         {
-            if (
-                Physics.Raycast(
-                    new Ray(unityCamera.transform.position, CalculateAngle(theta, phi)),
-                    out RaycastHit raycastHit
-                )
-            )
-            {
-                string output =
-                    raycastHit.collider.name
-                    + " was hit, theta was "
-                    + theta
-                    + ", rho was "
-                    + phi
-                    + ", distance was "
-                    + raycastHit.distance;
-                print(output);
-                writer.WriteLine(output);
-            }
-            else
-            {
-                string output = "Nothing was hit, theta was " + theta + ", rho was " + phi;
-                print(output);
-                writer.WriteLine(output);
-            }
+            Physics.Raycast(
+                new Ray(unityCamera.transform.position, CalculateAngle(theta, phi)),
+                out RaycastHit raycastHit
+            );
+
+            string output = FormatCSV(theta, phi, raycastHit.distance);
+
+            print(output);
+            writer.WriteLine(output);
         }
+
         theta += ANGULAR_RESOLUTION;
+
+        // Quit at the end. Possible to make this call the python analysis script
         if (theta > 2 * Math.PI)
         {
 #if UNITY_EDITOR
