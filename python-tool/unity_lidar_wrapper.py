@@ -7,7 +7,7 @@ import numpy as np
 
 
 class LiDARWrapper:
-    def __init__(self, unity_exe_path, output_csv="outputFile.csv"):
+    def __init__(self, unity_exe_path, output_csv="/Users/ayaan/coding/ASU-Summer-Internship-LiDAR-Prioject/Unity Project/Virtual Camera/Virtual Sensor/outputFile.csv"):
         self.unity_exe = unity_exe_path
         self.output_csv = output_csv
         self.scan_data = None
@@ -124,12 +124,14 @@ class LiDARWrapper:
 
 
 def main():
-    if len(sys.argv) < 2:
-        print("Usage: python basic_lidar_wrapper.py <unity_executable_path>")
+    if len(sys.argv) < 3:
+        print("Usage: python basic_lidar_wrapper.py <unity_executable_path> <output_csv_path>")
+        print("Example: python basic_lidar_wrapper.py '/Applications/Unity/Hub/Editor/6000.1.5f1/Unity.app/Contents/MacOS/Unity' '/path/to/output.csv'")
         sys.exit(1)
     
     unity_exe = sys.argv[1]
-    wrapper = LiDARWrapper(unity_exe)
+    output_csv = sys.argv[2]
+    wrapper = LiDARWrapper(unity_exe, output_csv)
     
     success = wrapper.run_full_pipeline()
     sys.exit(0 if success else 1)

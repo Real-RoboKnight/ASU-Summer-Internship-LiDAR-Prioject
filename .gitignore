@@ -91,3 +91,5 @@ ExportedObj/
 
 # python
 .venv/
+point_cloud.xyz
+lidar_plots/
