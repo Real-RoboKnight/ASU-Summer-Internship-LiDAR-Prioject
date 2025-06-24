@@ -1,0 +1,43 @@
+{
+  "timestamp": "2025-06-24T14:09:01.230495",
+  "dataset_info": {
+    "total_points": 2099200,
+    "valid_points": 2099200,
+    "data_completeness": 1.0
+  },
+  "performance_metrics": {
+    "point_density": 3383895.8017515517,
+    "spatial_resolution": 0.003125614032801718,
+    "coverage_uniformity": 0.04201524897465141,
+    "noise_level": 0.02944706437437556,
+    "dynamic_range": 1.6763291687709407,
+    "angular_resolution_h": 0.0030679615757700507,
+    "angular_resolution_v": 0.0030679615757702727,
+    "range_accuracy": 0.0030877406319150015,
+    "beam_divergence": 0.0654787177034631
+  },
+  "geometric_primitives": {
+    "planes": [
+      {
+        "normal": "[ 0.98588608 -0.16607549 -0.02115588]",
+        "point": "[-0.04538124 -0.15172529 -0.92375639]",
+        "inliers": "[ True  True  True ...  True  True  True]",
+        "n_inliers": "2033708"
+      }
+    ],
+    "spheres": [
+      {
+        "center": "[ 0.04134552 -0.2039807  -0.54335879]",
+        "radius": 0.5823506131801135,
+        "inliers": "[ True  True  True ...  True  True  True]",
+        "n_inliers": "2064240",
+        "cost": 1099.5673113777734
+      }
+    ]
+  },
+  "noise_characteristics": {
+    "overall_noise_level": 0.02944706437437556,
+    "range_accuracy": 0.0030877406319150015,
+    "n_anomalies": "94051"
+  }
+}

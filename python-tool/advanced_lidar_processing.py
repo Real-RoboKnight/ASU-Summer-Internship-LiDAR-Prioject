@@ -1,4 +1,7 @@
 import os
+import sys
+import psutil
+import gc
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import spatial, optimize, signal
@@ -17,7 +20,6 @@ import warnings
 warnings.filterwarnings('ignore')
 from unity_lidar_wrapper import LiDARWrapper
 from sklearn.cluster import AgglomerativeClustering
-
 
 @dataclass
 class LiDARMetrics:
@@ -50,6 +52,11 @@ class AdvancedLiDARAnalyzer:
         self.clusters = None
         self.noise_model = None
         
+        # Memory monitoring
+        self.memory_log = []
+        self.process = psutil.Process()
+        self._log_memory("Initialization", detailed=True)
+        
         # analysis parameters
         self.analysis_config = {
             'clustering': {
@@ -69,14 +76,100 @@ class AdvancedLiDARAnalyzer:
             }
         }
     
+    def _log_memory(self, stage: str, detailed: bool = False):
+        """Log current memory usage"""
+        try:
+            # Get process memory info
+            memory_info = self.process.memory_info()
+            memory_mb = memory_info.rss / (1024 * 1024)  # RSS in MB
+            
+            # Get system memory info
+            system_memory = psutil.virtual_memory()
+            system_used_mb = (system_memory.total - system_memory.available) / (1024 * 1024)
+            
+            log_entry = {
+                'stage': stage,
+                'process_memory_mb': round(memory_mb, 2),
+                'system_memory_used_mb': round(system_used_mb, 2),
+                'system_memory_percent': system_memory.percent
+            }
+            
+            if detailed:
+                # Add detailed object memory info
+                object_memory = {}
+                
+                if self.raw_data is not None:
+                    object_memory['raw_data_mb'] = round(sys.getsizeof(self.raw_data) / (1024 * 1024), 2)
+                
+                if self.processed_data is not None:
+                    object_memory['processed_data_mb'] = round(sys.getsizeof(self.processed_data) / (1024 * 1024), 2)
+                
+                if self.cartesian_points is not None:
+                    object_memory['cartesian_points_mb'] = round(self.cartesian_points.nbytes / (1024 * 1024), 2)
+                
+                if hasattr(self, '_cached_points_3d') and self._cached_points_3d is not None:
+                    object_memory['cached_points_3d_mb'] = round(self._cached_points_3d.nbytes / (1024 * 1024), 2)
+                
+                if hasattr(self, '_cached_scaled_points') and self._cached_scaled_points is not None:
+                    object_memory['cached_scaled_points_mb'] = round(self._cached_scaled_points.nbytes / (1024 * 1024), 2)
+                
+                log_entry['object_memory'] = object_memory
+                log_entry['total_object_memory_mb'] = round(sum(object_memory.values()), 2)
+            
+            self.memory_log.append(log_entry)
+            
+            # Print memory usage
+            print(f"🔍 Memory [{stage}]: Process={memory_mb:.1f}MB, Objects={log_entry.get('total_object_memory_mb', 0):.1f}MB")
+            
+            if detailed and 'object_memory' in log_entry:
+                for obj, size in log_entry['object_memory'].items():
+                    print(f"   📊 {obj}: {size}MB")
+            
+        except Exception as e:
+            print(f"Warning: Memory logging failed for {stage}: {e}")
+    
+    def print_memory_summary(self):
+        """Print a summary of memory usage throughout the process"""
+        if not self.memory_log:
+            print("No memory data logged")
+            return
+        
+        print("\n" + "="*60)
+        print("📈 MEMORY USAGE SUMMARY")
+        print("="*60)
+        
+        for entry in self.memory_log:
+            stage = entry['stage']
+            process_mb = entry['process_memory_mb']
+            obj_mb = entry.get('total_object_memory_mb', 0)
+            
+            print(f"{stage:25} | Process: {process_mb:8.1f}MB | Objects: {obj_mb:8.1f}MB")
+        
+        # Find peak usage
+        peak_entry = max(self.memory_log, key=lambda x: x['process_memory_mb'])
+        print(f"\n🔺 Peak Memory Usage: {peak_entry['process_memory_mb']:.1f}MB at stage '{peak_entry['stage']}'")
+        
+        # Calculate memory growth
+        if len(self.memory_log) > 1:
+            initial = self.memory_log[0]['process_memory_mb']
+            final = self.memory_log[-1]['process_memory_mb']
+            growth = final - initial
+            print(f"📈 Total Memory Growth: {growth:+.1f}MB ({growth/initial*100:+.1f}%)")
+        
+        print("="*60)
+    
     def load_data(self, csv_path: str = None) -> bool:
+        self._log_memory("Before data loading")
+        
         if self.wrapper and csv_path is None:
             if not self.wrapper.load_data():
                 return False
             self.raw_data = self.wrapper.scan_data.copy()
+            self._log_memory("After Unity data loading", detailed=True)
         elif csv_path:
             try:
                 self.raw_data = pd.read_csv(csv_path)
+                self._log_memory("After CSV loading", detailed=True)
             except Exception as e:
                 print(f"Error loading CSV: {e}")
                 return False
@@ -85,14 +178,22 @@ class AdvancedLiDARAnalyzer:
             return False
         
         self._preprocess_data()
+        self._log_memory("After preprocessing", detailed=True)
+        
         self._compute_cartesian_coordinates()
+        self._log_memory("After cartesian computation", detailed=True)
+        
         self._compute_advanced_metrics()
+        self._log_memory("After metrics computation", detailed=True)
         
         print(f"Loaded and preprocessed {len(self.processed_data)} points")
         return True
     
     def _preprocess_data(self):
+        self._log_memory("Start preprocessing")
+        
         df = self.raw_data.copy()
+        self._log_memory("After raw data copy")
         
         # data validation
         print("Performing data validation...")
@@ -105,6 +206,7 @@ class AdvancedLiDARAnalyzer:
         
         # remove invalid measurements
         df = df.dropna()
+        self._log_memory("After dropna")
         
         # ensure required columns exist
         required_columns = ['distance', 'theta', 'phi']
@@ -113,15 +215,17 @@ class AdvancedLiDARAnalyzer:
             print(f"Error: Missing required columns: {missing_columns}")
             self.processed_data = pd.DataFrame()
             return
-        
+        print(df[df["distance"] > 0])
         # validate data ranges and remove outliers
         df = df[(df['distance'] >= 0) & (df['distance'] <= 1000)]  # can adjust range limit as needed
-        df = df[(df['theta'] >= -np.pi) & (df['theta'] <= np.pi)]
+        df = df[(df['theta'] >= 0) & (df['theta'] <= 2*np.pi)]
         df = df[(df['phi'] >= 0) & (df['phi'] <= np.pi)]
-        
+        self._log_memory("After range validation")
+        print(df[df["distance"] > 0])
         # remove infinite and NaN values
         numeric_columns = df.select_dtypes(include=[np.number]).columns
         df = df.replace([np.inf, -np.inf], np.nan).dropna(subset=numeric_columns)
+        self._log_memory("After inf/nan removal")
         
         if len(df) == 0:
             print("Warning: All data filtered out during validation")
@@ -131,8 +235,11 @@ class AdvancedLiDARAnalyzer:
         try:
             # add derived features with error handling
             df['range_rate'] = df.groupby(['theta', 'phi'])['distance'].diff().fillna(0)
+            self._log_memory("After range_rate computation")
+            
             df['angular_velocity'] = np.sqrt(df.groupby('distance')['theta'].diff().fillna(0)**2 + 
                                            df.groupby('distance')['phi'].diff().fillna(0)**2)
+            self._log_memory("After angular_velocity computation")
             
             # Intensity normalization (if available)
             if 'intensity' in df.columns:
@@ -141,14 +248,18 @@ class AdvancedLiDARAnalyzer:
                     df['intensity_normalized'] = (df['intensity'] - df['intensity'].min()) / intensity_range
                 else:
                     df['intensity_normalized'] = np.zeros(len(df))
+                self._log_memory("After intensity normalization")
                     
         except Exception as e:
             print(f"Warning: Error computing derived features ({e}), continuing with basic data")
         
         self.processed_data = df
+        self._log_memory("End preprocessing", detailed=True)
         print(f"Preprocessing complete: {initial_count} -> {len(df)} points ({len(df)/initial_count*100:.1f}% retained)")
     
     def _compute_cartesian_coordinates(self):
+        self._log_memory("Start cartesian computation")
+        
         # enhanced coordinate transformation with error propagation
         if self.processed_data is None:
             return
@@ -156,16 +267,22 @@ class AdvancedLiDARAnalyzer:
         theta = self.processed_data['theta'].values
         phi = self.processed_data['phi'].values
         distance = self.processed_data['distance'].values
+        print(theta, phi, distance)
+        print(distance[distance != 0])
+        self._log_memory("After extracting coordinate arrays")
         
         # standard conversion
         x = distance * np.cos(theta) * np.sin(phi)
         y = distance * np.cos(phi)
         z = distance * np.sin(theta) * np.sin(phi)
+        print(x, y, z)
+        self._log_memory("After coordinate transformation")
         
         # add measurement uncertainty estimates
         # assume 1% distance error and 0.1 degree angular error
         dist_error = distance * 0.01
         angular_error = np.deg2rad(0.1)
+        self._log_memory("After error computation setup")
         
         # error propagation for Cartesian coordinates
         dx = np.sqrt((np.cos(theta) * np.sin(phi) * dist_error)**2 + 
@@ -179,7 +296,12 @@ class AdvancedLiDARAnalyzer:
                     (distance * (np.cos(theta) * np.sin(phi) * angular_error))**2 +
                     (distance * np.sin(theta) * np.cos(phi) * angular_error)**2)
         
+        print(dx, dy, dz)
+        self._log_memory("After error propagation")
+        
         self.cartesian_points = np.column_stack((x, y, z, distance, dx, dy, dz))
+        print(self.cartesian_points)
+        self._log_memory("After cartesian points creation", detailed=True)
     
     def _compute_advanced_metrics(self):
         # compute comprehensive LiDAR performance metrics
@@ -235,7 +357,7 @@ class AdvancedLiDARAnalyzer:
                 else:
                     spatial_resolution = 0.1  # default value
                     
-        except (ValueError, IndexError) as e:
+        except ValueError:
             print(f"Warning: Spatial resolution computation failed ({e}), using default value")
             spatial_resolution = 0.1
         
@@ -359,6 +481,8 @@ class AdvancedLiDARAnalyzer:
     
     def perform_advanced_clustering(self) -> Dict:
         """clustering analysis w/ multiple algs."""
+        self._log_memory("Start clustering analysis")
+        
         if self.cartesian_points is None:
             return {}
         
@@ -367,10 +491,12 @@ class AdvancedLiDARAnalyzer:
             print("warning: data quality issues, clustering may be unreliable")
         
         points_3d = self.cartesian_points[:, :3]
+        self._log_memory("After extracting 3D points")
         
         # remove any non-finite points
         finite_mask = np.isfinite(points_3d).all(axis=1)
         points_3d_clean = points_3d[finite_mask]
+        self._log_memory("After cleaning finite points")
         
         if len(points_3d_clean) < 10:
             print("error: not enough valid points for clustering")
@@ -380,22 +506,28 @@ class AdvancedLiDARAnalyzer:
         
         # DBSCAN Clustering
         print("Performing DBSCAN clustering")
+        self._log_memory("Before DBSCAN")
         try:
             dbscan = DBSCAN(eps=self.analysis_config['clustering']['dbscan_eps'],
                            min_samples=self.analysis_config['clustering']['dbscan_min_samples'])
             dbscan_labels = dbscan.fit_predict(points_3d_clean)
+            self._log_memory("After DBSCAN")
         except Exception as e:
             print(f"DBSCAN clustering failed: {e}")
             dbscan_labels = np.zeros(len(points_3d_clean))
         
         # K-Means Clustering
         print("Performing K-Means clustering")
+        self._log_memory("Before K-Means")
         try:
             scaler = StandardScaler()
             points_scaled = scaler.fit_transform(points_3d_clean)
+            self._log_memory("After scaling for K-Means")
+            
             kmeans = KMeans(n_clusters=min(self.analysis_config['clustering']['kmeans_n_clusters'], len(points_3d_clean)), 
                            random_state=42, n_init=10)
             kmeans_labels = kmeans.fit_predict(points_scaled)
+            self._log_memory("After K-Means")
         except Exception as e:
             print(f"K-Means clustering failed: {e}")
             kmeans_labels = np.zeros(len(points_3d_clean))
@@ -403,13 +535,17 @@ class AdvancedLiDARAnalyzer:
         
         # Gaussian Mixture Model clustering
         print("Performing Gaussian Mixture clustering")
+        self._log_memory("Before GMM")
         try:
             from sklearn.mixture import GaussianMixture
             scaler = StandardScaler()
             points_scaled = scaler.fit_transform(points_3d_clean)
+            self._log_memory("After scaling for GMM")
+            
             n_components = min(6, len(points_3d_clean)//10)  # adaptive # of components
             gmm = GaussianMixture(n_components=max(1, n_components), random_state=42)
             gmm_labels = gmm.fit_predict(points_scaled)
+            self._log_memory("After GMM")
         except Exception as e:
             print(f"GMM clustering failed: {e}")
             gmm_labels = np.zeros(len(points_3d_clean))
@@ -417,10 +553,12 @@ class AdvancedLiDARAnalyzer:
         
         # hierarchical clustering
         print("Performing Hierarchical clustering")
+        self._log_memory("Before Hierarchical")
         try:
             n_clusters = min(8, len(points_3d_clean)//5)  # adaptive # of clusters
             hierarchical = AgglomerativeClustering(n_clusters=max(1, n_clusters))
             hierarchical_labels = hierarchical.fit_predict(points_3d_clean)
+            self._log_memory("After Hierarchical")
         except Exception as e:
             print(f"Hierarchical clustering failed: {e}")
             hierarchical_labels = np.zeros(len(points_3d_clean))
@@ -454,6 +592,8 @@ class AdvancedLiDARAnalyzer:
     
     def detect_geometric_primitives(self) -> Dict:
         """detect planes, cylinders, and spheres in point cloud"""
+        self._log_memory("Start geometric primitives detection")
+        
         if self.cartesian_points is None:
             return {}
         
@@ -462,6 +602,7 @@ class AdvancedLiDARAnalyzer:
         
         # Plane detection using RANSAC
         print("Detecting planes")
+        self._log_memory("Before plane detection")
         best_plane = None
         best_inliers = 0
         
@@ -492,9 +633,11 @@ class AdvancedLiDARAnalyzer:
                 }
         
         results['planes'] = [best_plane] if best_plane else []
+        self._log_memory("After plane detection")
         
         # Sphere detection
         print("Detecting spheres")
+        self._log_memory("Before sphere detection")
         def sphere_residuals(params, points):
             cx, cy, cz, r = params
             return np.sqrt((points[:, 0] - cx)**2 + (points[:, 1] - cy)**2 + 
@@ -528,15 +671,19 @@ class AdvancedLiDARAnalyzer:
                 continue
         
         results['spheres'] = [best_sphere] if best_sphere else []
+        self._log_memory("After sphere detection", detailed=True)
         
         return results
     
     def analyze_noise_characteristics(self) -> Dict:
+        self._log_memory("Start noise analysis")
+        
         if self.cartesian_points is None:
             return {}
         
         distances = self.cartesian_points[:, 3]
         x, y, z = self.cartesian_points[:, 0], self.cartesian_points[:, 1], self.cartesian_points[:, 2]
+        self._log_memory("After extracting coordinate arrays")
         
         # Distance-dependent noise
         print("analyzing distance-dependent noise")
@@ -549,23 +696,26 @@ class AdvancedLiDARAnalyzer:
                 local_distances = distances[mask]
                 local_noise = np.std(local_distances - np.mean(local_distances))
                 noise_vs_distance.append((distance_bins[i], local_noise))
+        self._log_memory("After distance-dependent noise analysis")
         
-        # Spatial noise correlation
-        print("analyzing spatial noise correlation")
-        tree = spatial.KDTree(np.column_stack((x, y, z)))
+        # # Spatial noise correlation
+        # print("analyzing spatial noise correlation")
+        # tree = spatial.KDTree(np.column_stack((x, y, z)))
+        # self._log_memory("After KDTree creation")
         
-        # compute local noise for each point
-        local_noise = []
-        for i, point in enumerate(np.column_stack((x, y, z))):
-            neighbors = tree.query_ball_point(point, r=1.0)
-            if len(neighbors) > 5:
-                neighbor_distances = distances[neighbors]
-                noise = np.std(neighbor_distances)
-                local_noise.append(noise)
-            else:
-                local_noise.append(0)
+        # # compute local noise for each point
+        # local_noise = []
+        # for i, point in enumerate(np.column_stack((x, y, z))):
+        #     neighbors = tree.query_ball_point(point, r=1.0)
+        #     if len(neighbors) > 5:
+        #         neighbor_distances = distances[neighbors]
+        #         noise = np.std(neighbor_distances)
+        #         local_noise.append(noise)
+        #     else:
+        #         local_noise.append(0)
         
-        local_noise = np.array(local_noise)
+        # local_noise = np.array(local_noise)
+        # self._log_memory("After spatial noise correlation")
         
         # spectral analysis
         print("performing spectral noise analysis")
@@ -573,15 +723,17 @@ class AdvancedLiDARAnalyzer:
         freqs = np.fft.fftfreq(len(sorted_distances))
         fft = np.fft.fft(sorted_distances - np.mean(sorted_distances))
         power_spectrum = np.abs(fft)**2
+        self._log_memory("After spectral analysis")
         
         # anomaly detection
         print("detecting anomalous measurements")
         iso_forest = IsolationForest(contamination=0.1, random_state=42)
         anomaly_labels = iso_forest.fit_predict(self.cartesian_points[:, :4])
+        self._log_memory("After anomaly detection")
         
         self.noise_model = {
             'distance_dependent': noise_vs_distance,
-            'spatial_correlation': local_noise,
+            # 'spatial_correlation': local_noise,
             'spectral': {
                 'frequencies': freqs[:len(freqs)//2],
                 'power_spectrum': power_spectrum[:len(power_spectrum)//2]
@@ -592,21 +744,28 @@ class AdvancedLiDARAnalyzer:
             }
         }
         
+        self._log_memory("End noise analysis", detailed=True)
         return self.noise_model
     
     def create_research_report(self, output_dir: str = "lidar_research_output"):
+        self._log_memory("Start research report generation")
+        
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
         
         print("generating research report")
         
         # Perform all analyses
-        clustering_results = self.perform_advanced_clustering()
+        
         geometric_results = self.detect_geometric_primitives()
+        self._log_memory("After geometric primitives detection")
+        
         noise_results = self.analyze_noise_characteristics()
+        self._log_memory("After noise analysis")
         
         # Create visualizations
         self._create_advanced_visualizations(output_dir)
+        self._log_memory("After visualization creation")
         
         # Generate report
         report = {
@@ -617,7 +776,7 @@ class AdvancedLiDARAnalyzer:
                 'data_completeness': len(self.cartesian_points) / len(self.raw_data)
             },
             'performance_metrics': self.metrics.to_dict() if self.metrics else {},
-            'clustering_analysis': clustering_results,
+            # 'clustering_analysis': clustering_results,
             'geometric_primitives': geometric_results,
             'noise_characteristics': {
                 'overall_noise_level': self.metrics.noise_level if self.metrics else 0,
@@ -630,15 +789,23 @@ class AdvancedLiDARAnalyzer:
         with open(f"{output_dir}/research_report.json", 'w') as f:
             json.dump(report, f, indent=2, default=str)
         
+        self._log_memory("End research report generation", detailed=True)
         print(f"Research report generated in {output_dir}/")
+        
+        # Print memory summary at the end
+        self.print_memory_summary()
+        
         return report
     
     def _create_advanced_visualizations(self, output_dir: str):
         """Create visualizations"""
+        self._log_memory("Start advanced visualizations")
+        
         plt.style.use('seaborn-v0_8')
         
         # 1. Multi-panel overview
         fig = plt.figure(figsize=(20, 16))
+        self._log_memory("After creating main figure")
         
         # Panel 1: 3D point cloud with clustering
         ax1 = fig.add_subplot(3, 3, 1, projection='3d')
@@ -660,6 +827,7 @@ class AdvancedLiDARAnalyzer:
         ax1.set_xlabel('X (m)')
         ax1.set_ylabel('Y (m)')
         ax1.set_zlabel('Z (m)')
+        self._log_memory("After panel 1")
         
         # Panel 2: Distance distribution
         ax2 = fig.add_subplot(3, 3, 2)
@@ -667,6 +835,7 @@ class AdvancedLiDARAnalyzer:
         ax2.hist(distances, bins=50, alpha=0.7, density=True)
         
         # Fit and plot kernel density estimate
+        print(distances)
         kde = gaussian_kde(distances)
         x_range = np.linspace(distances.min(), distances.max(), 100)
         ax2.plot(x_range, kde(x_range), 'r-', lw=2, label='KDE')
@@ -674,6 +843,7 @@ class AdvancedLiDARAnalyzer:
         ax2.set_ylabel('Density')
         ax2.set_title('Distance Distribution with KDE')
         ax2.legend()
+        self._log_memory("After panel 2")
         
         # Panel 3: Noise characteristics
         ax3 = fig.add_subplot(3, 3, 3)
@@ -813,11 +983,17 @@ class AdvancedLiDARAnalyzer:
         plt.tight_layout()
         plt.savefig(f"{output_dir}/full_analysis.png", dpi=300, bbox_inches='tight')
         plt.close()
+        self._log_memory("After saving main visualization")
         
         # Create additional specialized plots
         self._create_clustering_comparison(output_dir)
+        self._log_memory("After clustering comparison plots")
+        
         self._create_noise_analysis_plots(output_dir)
+        self._log_memory("After noise analysis plots")
+        
         self._create_geometric_analysis_plots(output_dir)
+        self._log_memory("End advanced visualizations")
     
     def _create_clustering_comparison(self, output_dir: str):
         # create detailed clustering comparison plots
