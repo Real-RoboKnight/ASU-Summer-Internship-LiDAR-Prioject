@@ -1,0 +1,60 @@
+from PIL import Image
+import os
+import time
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+from matplotlib.animation import FuncAnimation
+
+# show image, update image when there's a new image detected in the plots folder
+
+def get_newest_image_folder(plots_folder="/Users/ayaan/coding/ASU-Summer-Internship-LiDAR-Prioject/lidar_analysis_results_new/"):
+    """Get the newest image folder based on the timestamp."""
+    folders = [f for f in os.listdir(plots_folder) if os.path.isdir(os.path.join(plots_folder, f))]
+    if not folders:
+        return None
+    newest_folder = max(folders, key=lambda x: int(x.split('_')[-1]))
+    return os.path.join(plots_folder, newest_folder)
+
+def show_main_image():
+    """Display and continuously update the LiDAR image in the same window."""
+    fig, ax = plt.subplots(figsize=(10, 8))
+    ax.set_title("Real-time LiDAR Visualization")
+    ax.axis('off')
+    
+    # Initialize with empty plot
+    im = ax.imshow([[0]], cmap='gray')
+    plt.tight_layout()
+    
+    last_image_path = None
+    
+    def update_image():
+        nonlocal last_image_path
+        newest_folder = get_newest_image_folder()
+        if newest_folder:
+            image_path = os.path.join(newest_folder, "lidar_3d_main.png")
+            if os.path.exists(image_path) and image_path != last_image_path:
+                try:
+                    # Load and display the new image
+                    img = mpimg.imread(image_path)
+                    im.set_array(img)
+                    im.set_extent([0, img.shape[1], img.shape[0], 0])
+                    ax.set_xlim([0, img.shape[1]])
+                    ax.set_ylim([img.shape[0], 0])
+                    plt.draw()
+                    last_image_path = image_path
+                    print(f"Updated image: {image_path}")
+                except Exception as e:
+                    print(f"Error loading image: {e}")
+    
+    # Create animation that updates every 3 seconds
+    ani = FuncAnimation(fig, lambda frame: update_image(), interval=3000, cache_frame_data=False)
+    
+    # Show the plot window
+    plt.show()
+    
+    return ani  # Return animation object to keep it alive
+
+if __name__ == "__main__":
+    print("Starting real-time LiDAR image viewer...")
+    print("Close the window to stop the viewer.")
+    ani = show_main_image()

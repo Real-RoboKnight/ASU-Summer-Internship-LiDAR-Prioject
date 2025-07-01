@@ -281,6 +281,7 @@ class AdvancedLiDARVisualizer:
                        edgecolor='none')
             print(f"3D visualization saved to {save_path}")
         
+        plt.close(fig)
         return fig
     
     def create_top_down_view(self, save_path=None):
@@ -326,6 +327,7 @@ class AdvancedLiDARVisualizer:
                        facecolor='black')
             print(f"Top-down view saved to {save_path}")
         
+        plt.close(fig)
         return fig
     
     def create_analysis_dashboard(self, output_dir="lidar_visualization_output"):
@@ -341,7 +343,6 @@ class AdvancedLiDARVisualizer:
             save_path=f"{output_dir}/lidar_3d_main.png",
             interactive=False
         )
-        plt.show()
         
         fig_interactive = self.create_3d_visualization(
             style='professional',
@@ -351,7 +352,6 @@ class AdvancedLiDARVisualizer:
         
         print("2. Creating top-down view...")
         self.create_top_down_view(f"{output_dir}/lidar_topdown.png")
-        plt.show()
         
         print("3. Creating perspective views...")
         self._create_multiple_perspectives(output_dir)
