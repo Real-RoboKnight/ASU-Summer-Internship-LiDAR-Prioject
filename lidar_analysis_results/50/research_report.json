@@ -1,0 +1,61 @@
+{
+  "timestamp": "2025-07-01T00:01:11.754104",
+  "dataset_info": {
+    "total_points": 8385,
+    "valid_points": 8385,
+    "data_completeness": 1.0
+  },
+  "performance_metrics": {
+    "point_density": 16581.448185787427,
+    "spatial_resolution": 0.049126133564096945,
+    "coverage_uniformity": 0.1647875166758158,
+    "noise_level": 0.09869673832515724,
+    "dynamic_range": 1.646187090000011,
+    "angular_resolution_h": 0.049087385212340004,
+    "angular_resolution_v": 0.04908738521233999,
+    "range_accuracy": 0.04564242073904372,
+    "beam_divergence": 1.0486801299333495
+  },
+  "clustering_analysis": {
+    "kmeans": {
+      "labels": "[0 0 0 ... 0 0 0]",
+      "n_clusters": 8,
+      "centroids": "[[-0.08289196  0.08241094  0.21372252]\n [ 3.1806179  -7.98503142 -4.4510673 ]\n [ 6.98665053  2.16498591 -4.78024372]\n [ 1.2640811   3.41493719 -4.51228712]\n [-2.86223319 -6.10143198 -4.74669205]\n [ 2.07041849 -2.14826522 -4.39076521]\n [-3.47811776  1.13520872 -4.85247853]\n [ 8.42898653 -4.44397741 -4.96947718]]",
+      "inertia": 2525.6446067777815
+    },
+    "gmm": {
+      "labels": "[0 0 0 ... 0 0 0]",
+      "n_clusters": 6,
+      "bic": -281453.0543399498,
+      "aic": -281868.072120731
+    },
+    "hierarchical": {
+      "labels": "[7 7 7 ... 7 7 7]",
+      "n_clusters": 8
+    }
+  },
+  "geometric_primitives": {
+    "planes": [
+      {
+        "normal": "[-0.97626175 -0.19408125 -0.09615339]",
+        "point": "[ 0.22877281 -0.69828528 -0.91331227]",
+        "inliers": "[ True  True  True ...  True  True  True]",
+        "n_inliers": "8133"
+      }
+    ],
+    "spheres": [
+      {
+        "center": "[ 0.16505258 -0.20180918 -0.53348116]",
+        "radius": 0.5942521940378467,
+        "inliers": "[ True  True  True ...  True  True  True]",
+        "n_inliers": "8247",
+        "cost": 4.3116048051063505
+      }
+    ]
+  },
+  "noise_characteristics": {
+    "overall_noise_level": 0.09869673832515724,
+    "range_accuracy": 0.04564242073904372,
+    "n_anomalies": "368"
+  }
+}
