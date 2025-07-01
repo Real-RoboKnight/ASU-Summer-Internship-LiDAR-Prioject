@@ -93,3 +93,4 @@ ExportedObj/
 .venv/
 point_cloud.xyz
 lidar_plots/
+__pycache__/

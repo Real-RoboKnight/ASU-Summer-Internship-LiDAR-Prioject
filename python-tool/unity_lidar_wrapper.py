@@ -125,8 +125,8 @@ class LiDARWrapper:
 
 def main():
     if len(sys.argv) < 3:
-        print("Usage: python basic_lidar_wrapper.py <unity_executable_path> <output_csv_path>")
-        print("Example: python basic_lidar_wrapper.py '/Applications/Unity/Hub/Editor/6000.1.5f1/Unity.app/Contents/MacOS/Unity' '/path/to/output.csv'")
+        print("Usage: python unity_lidar_wrapper.py <unity_executable_path> <output_csv_path>")
+        print("Example: python unity_lidar_wrapper.py '/Applications/Unity/Hub/Editor/6000.1.5f1/Unity.app/Contents/MacOS/Unity' '/path/to/output.csv'")
         sys.exit(1)
     
     unity_exe = sys.argv[1]
