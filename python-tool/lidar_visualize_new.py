@@ -35,11 +35,11 @@ class AdvancedLiDARVisualizer:
         }
         
         self.render_config = {
-            'point_size': 1.0,
+            'point_size': 20.0,
             'alpha': 0.8,
             'background_color': 'black',
             'dpi': 300,
-            'remove_outliers': True,
+            'remove_outliers': False,
             'smooth_surfaces': True,
             'density_filter': True
         }
@@ -106,7 +106,7 @@ class AdvancedLiDARVisualizer:
         x = distance * np.cos(theta) * np.sin(phi)
         y = distance * np.cos(phi)
         z = distance * np.sin(theta) * np.sin(phi)
-        
+
         self.cartesian_points = np.column_stack((x, y, z, distance))
         self.processed_points = df
         
@@ -167,7 +167,6 @@ class AdvancedLiDARVisualizer:
                 opacity=0.8,
                 colorbar=dict(
                     title="Distance (m)",
-                    titleside="right",
                     tickmode="linear",
                     tick0=0,
                     dtick=1
@@ -240,7 +239,7 @@ class AdvancedLiDARVisualizer:
                            cmap='viridis',
                            s=self.render_config['point_size'],
                            alpha=self.render_config['alpha'],
-                           edgecolors='none')
+                           edgecolors='none', )
         
         ax.set_facecolor('black')
         fig.patch.set_facecolor('black')
@@ -292,6 +291,7 @@ class AdvancedLiDARVisualizer:
         
         print("Creating top-down view...")
         
+        print(self.cartesian_points)
         x, y, z, distances = self.cartesian_points.T
         
         fig, ax = plt.subplots(figsize=(12, 12), facecolor='black')
@@ -300,7 +300,7 @@ class AdvancedLiDARVisualizer:
         scatter = ax.scatter(x, y, 
                            c=distances, 
                            cmap='viridis',
-                           s=1, 
+                           s=self.render_config['point_size'], 
                            alpha=0.8,
                            edgecolors='none')
         

@@ -1,0 +1,10 @@
+LiDAR Scan Statistics Report
+========================================
+
+Total Points: 94,051
+Distance Range: 0.90 - 1.51 meters
+Average Distance: 1.07 ± 0.13 meters
+Spatial Extent (X): 0.92 meters
+Spatial Extent (Y): 1.76 meters
+Spatial Extent (Z): 0.35 meters
+Point Density: 295762.4 points/m²
