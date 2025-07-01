@@ -94,3 +94,6 @@ ExportedObj/
 point_cloud.xyz
 lidar_plots/
 __pycache__/
+
+.DS_Store
+lidar_analysis_results/

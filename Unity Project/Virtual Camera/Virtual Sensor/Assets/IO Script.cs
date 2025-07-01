@@ -7,31 +7,34 @@ public class IOScript : MonoBehaviour
 {
     const double ANGULAR_RESOLUTION = Math.PI / 64;
     const double TWO_PI = 2.0 * Math.PI;
+    const int PERIOD = 10; // capture data for ten frames then call python
 
     // TODO: replace hard coded file path
     Camera unityCamera;
     StreamWriter writer;
-    double theta = 0;
-    double phi = Math.PI;
-    Vector3[] directionCache;
-    int cacheSize;
+    double[] thetaBounds = new double[PERIOD + 1];
 
     void Start()
     {
         print("start");
-        writer = File.CreateText("outputFile.csv");
+        writer = File.CreateText("/tmp/Unity/outputFile/0.csv");
         writer.WriteLine("Frame Number,theta,phi,distance");
         unityCamera = Camera.main;
 
-        // Pre-calculate direction vectors for better performance
-        cacheSize = (int)(Math.PI / ANGULAR_RESOLUTION);
-        directionCache = new Vector3[cacheSize];
-        for (int i = 0; i < cacheSize; i++)
+        // Precompute theta bounds based on the period.
+        for (int i = 0; i <= PERIOD; i++)
         {
-            double currentPhi = i * ANGULAR_RESOLUTION;
-            directionCache[i] = CalculateAngle(0, currentPhi);
+            thetaBounds[i] = 0 + i * (TWO_PI / PERIOD);
         }
-        Process.Start(@"/usr/bin/rm", "-rf \"/home/robocat/Documents/Code/ASU/Summer Internship/lidar_analysis_results/\"");
+
+        Process.Start(
+            @"/usr/bin/rm",
+            "-rf \"/home/robocat/Documents/Code/ASU/Summer Internship/lidar_analysis_results/\""
+        );
+        Process.Start(
+            @"/usr/bin/rm",
+            "-rf \"/home/robocat/Documents/Code/ASU/Summer Internship/lidar_analysis_results/\""
+        );
     }
 
     Vector3 CalculateAngle(double theta, double phi)
@@ -47,16 +50,6 @@ public class IOScript : MonoBehaviour
         theta = theta % TWO_PI;
         if (theta < 0)
             theta += TWO_PI;
-
-        // Use cached direction if possible
-        if (Math.Abs(theta) < 1e-6) // If theta is basically 0
-        {
-            int index = (int)(phi / ANGULAR_RESOLUTION);
-            if (index >= 0 && index < cacheSize)
-            {
-                return directionCache[index];
-            }
-        }
 
         // Calculate direction vector - pre-calculate trig functions
         float sinPhi = (float)Math.Sin(phi);
@@ -76,11 +69,31 @@ public class IOScript : MonoBehaviour
     {
         print("frame");
 
-        writer = File.CreateText($"/tmp/Unity/outputFile/{Time.frameCount}.csv");
-        writer.WriteLine("Frame Number,theta,phi,distance");
-        for (theta = 0; theta < TWO_PI; theta += ANGULAR_RESOLUTION)
+        // After setup, wait till the counter resets.
+        if (Time.frameCount < PERIOD)
+            return;
+        // Only process 1 images per PERIOD frames.
+        if (Time.frameCount % PERIOD == 0)
         {
-            for (phi = 0; phi < Math.PI; phi += ANGULAR_RESOLUTION)
+            writer.Flush();
+            writer.Close();
+            writer = File.CreateText($"/tmp/Unity/outputFile/{Time.frameCount}.csv");
+            writer.WriteLine("Frame Number,theta,phi,distance");
+
+            print("Called Python.");
+            Process.Start(
+                @"/home/robocat/Documents/Code/ASU/Summer Internship/.venv/bin/python",
+                $"\"/home/robocat/Documents/Code/ASU/Summer Internship/python-tool/lidar_visualize_new.py\" --csv-file /tmp/Unity/outputFile/{Time.frameCount - PERIOD}.csv --output-dir \"/home/robocat/Documents/Code/ASU/Summer Internship/lidar_analysis_results/{Time.frameCount}/\""
+            );
+        }
+
+        for (
+            double theta = thetaBounds[Time.frameCount % PERIOD];
+            theta < thetaBounds[(Time.frameCount % PERIOD) + 1];
+            theta += ANGULAR_RESOLUTION
+        )
+        {
+            for (double phi = 0; phi < Math.PI; phi += ANGULAR_RESOLUTION)
             {
                 Vector3 direction = CalculateAngle(theta, phi);
                 if (
@@ -101,33 +114,7 @@ public class IOScript : MonoBehaviour
                 }
             }
         }
-        writer.Flush();
-        writer.Close();
-
-        // Only process 6 images per second.
-        if (Time.frameCount % 10 == 0)
-        {
-            print(
-                $"\"/home/robocat/Documents/Code/ASU/Summer Internship/.venv/bin/python\" \"/home/robocat/Documents/Code/ASU/Summer Internship/python-tool/advanced_lidar_processing.py\" --csv-file /tmp/Unity/outputFile/{Time.frameCount}.csv --output-dir \"/home/robocat/Documents/Code/ASU/Summer Internship/lidar_analysis_results/{Time.frameCount}/\""
-            );
-
-            Process.Start(
-                @"/home/robocat/Documents/Code/ASU/Summer Internship/.venv/bin/python",
-                $"\"/home/robocat/Documents/Code/ASU/Summer Internship/python-tool/advanced_lidar_processing.py\" --csv-file /tmp/Unity/outputFile/{Time.frameCount}.csv --output-dir \"/home/robocat/Documents/Code/ASU/Summer Internship/lidar_analysis_results/{Time.frameCount}/\""
-            );
-        }
-        // Background process the python
-        // .WaitForExit();
     }
 
-    void OnDestroy()
-    {
-        // if (writer != null)
-        // {
-        //     writer.Flush();
-        //     // we don't want data loss
-        //     writer.Close();
-        //     writer = null;
-        // }
-    }
+    void OnDestroy() { }
 }
