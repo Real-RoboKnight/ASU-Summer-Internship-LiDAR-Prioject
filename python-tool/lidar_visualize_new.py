@@ -138,6 +138,33 @@ class AdvancedLiDARVisualizer:
         
         print(f"Outlier removal: {np.sum(~main_cluster_mask)} outliers removed")
     
+    def _calculate_brightness_values(self, distances):
+        """Calculate brightness values that decrease with distance"""
+        # Normalize distances to 0-1 range
+        min_dist = np.min(distances)
+        max_dist = np.max(distances)
+        
+        # Avoid division by zero
+        if max_dist == min_dist:
+            return np.ones_like(distances)
+        
+        # Normalize distances (0 = closest, 1 = farthest)
+        normalized_distances = (distances - min_dist) / (max_dist - min_dist)
+        
+        # Invert the values so closer points are brighter (1 = brightest, 0 = dimmest)
+        brightness = 1.0 - normalized_distances
+        
+        # Apply a power function to enhance the contrast
+        # Values closer to 1 make the brightness fall off more gradually
+        # Values closer to 0 make the brightness fall off more sharply
+        brightness = np.power(brightness, 0.7)
+        
+        # Ensure minimum brightness so points don't disappear completely
+        min_brightness = 0.2
+        brightness = min_brightness + brightness * (1.0 - min_brightness)
+        
+        return brightness
+    
     def create_3d_visualization(self, style='professional', save_path=None, interactive=True):
         """Create 3D visualization"""
         if self.cartesian_points is None:
@@ -148,6 +175,9 @@ class AdvancedLiDARVisualizer:
         
         x, y, z, distances = self.cartesian_points.T
         
+        # Calculate brightness values based on distance
+        brightness_values = self._calculate_brightness_values(distances)
+        
         if interactive:
             return self._create_plotly_3d(x, y, z, distances, style, save_path)
         else:
@@ -157,22 +187,25 @@ class AdvancedLiDARVisualizer:
         """Create interactive 3D visualization with Plotly"""
         print("Generating interactive 3D plot...")
         
+        # Calculate brightness values that decrease with distance
+        brightness = self._calculate_brightness_values(distances)
+        
         fig = go.Figure(data=[go.Scatter3d(
             x=x, y=y, z=z,
             mode='markers',
             marker=dict(
                 size=2,
-                color=distances,
+                color=brightness,
                 colorscale='Viridis',
                 opacity=0.8,
                 colorbar=dict(
-                    title="Distance (m)",
+                    title="Brightness (Distance-based)",
                     tickmode="linear",
                     tick0=0,
-                    dtick=1
+                    dtick=0.2
                 )
             ),
-            text=[f'Distance: {d:.2f}m' for d in distances],
+            text=[f'Distance: {d:.2f}m, Brightness: {b:.2f}' for d, b in zip(distances, brightness)],
             hovertemplate='<b>Position</b><br>' +
                          'X: %{x:.2f}m<br>' +
                          'Y: %{y:.2f}m<br>' +
@@ -231,11 +264,14 @@ class AdvancedLiDARVisualizer:
         """Create static 3D visualization with Matplotlib"""
         print("Generating static 3D plot...")
         
+        # Calculate brightness values that decrease with distance
+        brightness = self._calculate_brightness_values(distances)
+        
         fig = plt.figure(figsize=(15, 12), facecolor='black')
         ax = fig.add_subplot(111, projection='3d', facecolor='black')
         
         scatter = ax.scatter(x, y, z, 
-                           c=distances, 
+                           c=brightness, 
                            cmap='viridis',
                            s=self.render_config['point_size'],
                            alpha=self.render_config['alpha'],
@@ -264,7 +300,7 @@ class AdvancedLiDARVisualizer:
         ax.tick_params(colors='white', labelsize=10)
         
         cbar = plt.colorbar(scatter, ax=ax, shrink=0.6, aspect=20)
-        cbar.set_label('Distance (meters)', rotation=270, labelpad=15, color='white')
+        cbar.set_label('Brightness (Distance-based)', rotation=270, labelpad=15, color='white')
         cbar.ax.yaxis.set_tick_params(color='white')
         cbar.ax.yaxis.label.set_color('white')
         plt.setp(plt.getp(cbar.ax.axes, 'yticklabels'), color='white')
@@ -295,11 +331,14 @@ class AdvancedLiDARVisualizer:
         print(self.cartesian_points)
         x, y, z, distances = self.cartesian_points.T
         
+        # Calculate brightness values that decrease with distance
+        brightness = self._calculate_brightness_values(distances)
+        
         fig, ax = plt.subplots(figsize=(12, 12), facecolor='black')
         ax.set_facecolor('black')
         
         scatter = ax.scatter(x, y, 
-                           c=distances, 
+                           c=brightness, 
                            cmap='viridis',
                            s=self.render_config['point_size'], 
                            alpha=0.8,
@@ -313,7 +352,7 @@ class AdvancedLiDARVisualizer:
         ax.set_aspect('equal')
         
         cbar = plt.colorbar(scatter, ax=ax)
-        cbar.set_label('Distance (meters)', rotation=270, labelpad=15, color='white')
+        cbar.set_label('Brightness (Distance-based)', rotation=270, labelpad=15, color='white')
         cbar.ax.yaxis.set_tick_params(color='white')
         cbar.ax.yaxis.label.set_color('white')
         plt.setp(plt.getp(cbar.ax.axes, 'yticklabels'), color='white')

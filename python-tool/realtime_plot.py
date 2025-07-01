@@ -15,23 +15,10 @@ def get_newest_image_folder(plots_folder="/Users/ayaan/coding/ASU-Summer-Interns
     newest_folder = max(folders, key=lambda x: int(x.split('_')[-1]))
     return os.path.join(plots_folder, newest_folder)
 
-def show_main_image():
-    """Display and continuously update the LiDAR image in the same window."""
-    fig, ax = plt.subplots(figsize=(10, 8))
-    ax.set_title("Real-time LiDAR Visualization")
-    ax.axis('off')
-    
-    # Initialize with empty plot
-    im = ax.imshow([[0]], cmap='gray')
-    plt.tight_layout()
-    
-    last_image_path = None
-    
-    def update_image():
-        nonlocal last_image_path
+def update_image(last_image_path, file_name, im, ax):
         newest_folder = get_newest_image_folder()
         if newest_folder:
-            image_path = os.path.join(newest_folder, "lidar_3d_main.png")
+            image_path = os.path.join(newest_folder, file_name)
             if os.path.exists(image_path) and image_path != last_image_path:
                 try:
                     # Load and display the new image
@@ -45,13 +32,45 @@ def show_main_image():
                     print(f"Updated image: {image_path}")
                 except Exception as e:
                     print(f"Error loading image: {e}")
+
+def show_main_image():
+    """display + update main LiDAR image realtime"""
+    fig, ax = plt.subplots(figsize=(10, 8))
+    ax.set_title("Real-time Main Perspective LiDAR Visualization")
+    ax.axis('off')
+    
+    # Initialize with empty plot
+    im = ax.imshow([[0]], cmap='gray')
+    plt.tight_layout()
+    
+    last_image_path = None
     
     # Create animation that updates every 3 seconds
-    ani = FuncAnimation(fig, lambda frame: update_image(), interval=3000, cache_frame_data=False)
-    
+    ani = FuncAnimation(fig, lambda frame: update_image(last_image_path, "lidar_3d_main.png", im, ax), interval=3000, cache_frame_data=False)
+
     # Show the plot window
     plt.show()
     
+    return ani  # Return animation object to keep it alive
+
+def show_density_heatmap_image():
+    """display + update heatmap LiDAR image realtime"""
+    fig, ax = plt.subplots(figsize=(10, 8))
+    ax.set_title("Real-time Density Heatmap Perspective LiDAR Visualization")
+    ax.axis('off')
+    
+    # Initialize with empty plot
+    im = ax.imshow([[0]], cmap='hot')
+    plt.tight_layout()
+    
+    last_image_path = None
+    
+    # Create animation that updates every 3 seconds
+    ani = FuncAnimation(fig, lambda frame: update_image(last_image_path, "density_heatmap.png", im, ax), interval=3000, cache_frame_data=False)
+    
+    # Show the plot window
+    plt.show()
+
     return ani  # Return animation object to keep it alive
 
 if __name__ == "__main__":
