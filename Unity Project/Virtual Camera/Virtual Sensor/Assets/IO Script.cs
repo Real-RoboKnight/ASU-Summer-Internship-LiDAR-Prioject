@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class IOScript : MonoBehaviour
 {
-    const double ANGULAR_RESOLUTION = Math.PI / 64;
+    public String pythonPath;
+    public String pythonFile;
+    public String outputPath;
+    String tmpPath;
+
+    const double ANGULAR_RESOLUTION = Math.PI / 512;
     const double TWO_PI = 2.0 * Math.PI;
-    const int PERIOD = 10; // capture data for ten frames then call python
+    public const int PERIOD = 10; // capture data for ten frames then call python
 
     // TODO: replace hard coded file path
     Camera unityCamera;
@@ -16,8 +21,11 @@ public class IOScript : MonoBehaviour
 
     void Start()
     {
+        String tmpPath = Path.GetTempFileName();
+        Process.Start(@"/usr/bin/rm", $"-rf \"{outputPath}\"");
+
         print("start");
-        writer = File.CreateText("/tmp/Unity/outputFile/0.csv");
+        writer = File.CreateText(tmpPath);
         writer.WriteLine("Frame Number,theta,phi,distance");
         unityCamera = Camera.main;
 
@@ -26,15 +34,6 @@ public class IOScript : MonoBehaviour
         {
             thetaBounds[i] = 0 + i * (TWO_PI / PERIOD);
         }
-
-        Process.Start(
-            @"/usr/bin/rm",
-            "-rf \"/home/robocat/Documents/Code/ASU/Summer Internship/lidar_analysis_results/\""
-        );
-        Process.Start(
-            @"/usr/bin/rm",
-            "-rf \"/home/robocat/Documents/Code/ASU/Summer Internship/lidar_analysis_results/\""
-        );
     }
 
     Vector3 CalculateAngle(double theta, double phi)
@@ -77,14 +76,18 @@ public class IOScript : MonoBehaviour
         {
             writer.Flush();
             writer.Close();
-            writer = File.CreateText($"/tmp/Unity/outputFile/{Time.frameCount}.csv");
-            writer.WriteLine("Frame Number,theta,phi,distance");
-
-            print("Called Python.");
-            Process.Start(
-                @"/home/robocat/Documents/Code/ASU/Summer Internship/.venv/bin/python",
-                $"\"/home/robocat/Documents/Code/ASU/Summer Internship/python-tool/lidar_visualize_new.py\" --csv-file /tmp/Unity/outputFile/{Time.frameCount - PERIOD}.csv --output-dir \"/home/robocat/Documents/Code/ASU/Summer Internship/lidar_analysis_results/{Time.frameCount}/\""
+            print(
+                $"Called Python.\n {pythonPath}\t\"{pythonFile}\" --csv-file \"{tmpPath}\" --output-dir \"{outputPath}/{Time.frameCount}/\""
             );
+            Process.Start(
+                pythonPath,
+                $"\"{pythonFile}\" --csv-file \"{tmpPath}\" --output-dir \"{outputPath}/{Time.frameCount}/\""
+            );
+            File.Delete(tmpPath);
+
+            tmpPath = Path.GetTempFileName();
+            writer = File.CreateText(tmpPath);
+            writer.WriteLine("Frame Number,theta,phi,distance");
         }
 
         for (
