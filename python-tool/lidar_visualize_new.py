@@ -18,7 +18,7 @@ from unity_lidar_wrapper import LiDARWrapper
 class AdvancedLiDARVisualizer:
 
     def __init__(self, wrapper=None, csv_file=None):
-        """Initialize with either a LiDAR wrapper or CSV file"""
+        """initialize w/ either LiDAR wrapper or CSV file"""
         self.wrapper = wrapper
         self.csv_file = csv_file
         self.scan_data = None
@@ -45,7 +45,7 @@ class AdvancedLiDARVisualizer:
         }
 
     def _create_custom_colormap(self):
-        """Create custom colormap from green to blue"""
+        """create custom colormap from green to blue"""
         from matplotlib.colors import LinearSegmentedColormap
 
         colors = ['#00ff00', '#80ff00', '#ffff00', '#ff8000',
@@ -54,7 +54,7 @@ class AdvancedLiDARVisualizer:
         return LinearSegmentedColormap.from_list('custom_depth', colors, N=n_bins)
 
     def load_data(self):
-        """Load LiDAR data from wrapper or CSV file"""
+        """load LiDAR data from wrapper or CSV file"""
         print("Loading LiDAR data...")
 
         if self.wrapper:
@@ -84,7 +84,7 @@ class AdvancedLiDARVisualizer:
         return True
 
     def preprocess_data(self):
-        """Preprocess and convert to Cartesian coordinates"""
+        """preprocess and convert to Cartesian coordinates"""
         if self.scan_data is None:
             print("No data loaded. Call load_data() first.")
             return False
@@ -96,6 +96,7 @@ class AdvancedLiDARVisualizer:
 
         df = df.dropna()
         # df = df[(df['distance'] > 0) & (df['distance'] < 100)] # TODO: Adjust distance range based on your data
+        # distance is currently uncapped
         df = df[(df['theta'] >= 0) & (df['theta'] <= 2*np.pi)]
         df = df[(df['phi'] >= 0) & (df['phi'] <= np.pi)]
 
@@ -106,9 +107,9 @@ class AdvancedLiDARVisualizer:
         phi = df['phi'].values
         distance = df['distance'].values
 
-        x = distance * np.cos(theta) * np.sin(phi)
-        y = distance * np.cos(phi)
-        z = distance * np.sin(theta) * np.sin(phi)
+        x = distance * np.sin(phi) * np.cos(theta)
+        y = distance * np.sin(phi) * np.sin(theta)
+        z = distance * np.cos(phi)
 
         self.cartesian_points = np.column_stack((x, y, z, distance))
         self.processed_points = df
@@ -121,7 +122,7 @@ class AdvancedLiDARVisualizer:
         return True
 
     def _remove_outliers(self):
-        """Remove statistical outliers from point cloud"""
+        """remove statistical outliers from point cloud"""
         if self.cartesian_points is None:
             return
 
@@ -144,7 +145,7 @@ class AdvancedLiDARVisualizer:
             f"Outlier removal: {np.sum(~main_cluster_mask)} outliers removed")
 
     def _calculate_brightness_values(self, distances):
-        """Calculate brightness values that decrease with distance"""
+        """calculate brightness values that decrease with distance"""
         # Normalize distances to 0-1 range
         min_dist = np.min(distances)
         max_dist = np.max(distances)
@@ -171,7 +172,7 @@ class AdvancedLiDARVisualizer:
         return brightness
 
     def create_3d_visualization(self, style='professional', save_path=None, interactive=True):
-        """Create 3D visualization"""
+        """create 3D visualization"""
         if self.cartesian_points is None:
             print("No processed data available. Run preprocess_data() first.")
             return None
@@ -189,14 +190,14 @@ class AdvancedLiDARVisualizer:
             return self._create_matplotlib_3d(x, y, z, distances, style, save_path)
 
     def _create_plotly_3d(self, x, y, z, distances, style, save_path):
-        """Create interactive 3D visualization with Plotly"""
+        """create interactive 3D visualization with Plotly"""
         print("Generating interactive 3D plot...")
 
         # Calculate brightness values that decrease with distance
         brightness = self._calculate_brightness_values(distances)
 
         fig = go.Figure(data=[go.Scatter3d(
-            x=x, y=z, z=y,
+            x=x, y=y, z=z,
             mode='markers',
             marker=dict(
                 size=2,
@@ -213,9 +214,9 @@ class AdvancedLiDARVisualizer:
             text=[f'Distance: {d:.2f}m, Brightness: {b:.2f}' for d, b in zip(
                 distances, brightness)],
             hovertemplate='<b>Position</b><br>' +
-            'X: %{x:.2f}m<br>' +
-            'Y: %{y:.2f}m<br>' +
-            'Z: %{z:.2f}m<br>' +
+            'X (Depth): %{x:.2f}m<br>' +
+            'Y (Horizontal): %{y:.2f}m<br>' +
+            'Z (Height): %{z:.2f}m<br>' +
             '%{text}<extra></extra>'
         )])
 
@@ -228,19 +229,19 @@ class AdvancedLiDARVisualizer:
             },
             scene=dict(
                 xaxis=dict(
-                    title='X (meters)',
+                    title='X - Depth (meters)',
                     gridcolor='rgb(50,50,50)',
                     zerolinecolor='rgb(50,50,50)',
                     color='white'
                 ),
                 yaxis=dict(
-                    title='Y (meters)',
+                    title='Y - Horizontal (meters)',
                     gridcolor='rgb(50,50,50)',
                     zerolinecolor='rgb(50,50,50)',
                     color='white'
                 ),
                 zaxis=dict(
-                    title='Z (meters)',
+                    title='Z - Height (meters)',
                     gridcolor='rgb(50,50,50)',
                     zerolinecolor='rgb(50,50,50)',
                     color='white'
@@ -268,7 +269,7 @@ class AdvancedLiDARVisualizer:
         return fig
 
     def _create_matplotlib_3d(self, x, y, z, distances, style, save_path):
-        """Create static 3D visualization with Matplotlib"""
+        """create static 3D visualization with Matplotlib"""
         print("Generating static 3D plot...")
 
         # Calculate brightness values that decrease with distance
@@ -287,9 +288,9 @@ class AdvancedLiDARVisualizer:
         ax.set_facecolor('black')
         fig.patch.set_facecolor('black')
 
-        ax.set_xlabel('X (meters)', color='white', fontsize=12)
-        ax.set_ylabel('Y (meters)', color='white', fontsize=12)
-        ax.set_zlabel('Z (meters)', color='white', fontsize=12)
+        ax.set_xlabel('X - Depth (meters)', color='white', fontsize=12)
+        ax.set_ylabel('Y - Horizontal (meters)', color='white', fontsize=12)
+        ax.set_zlabel('Z - Height (meters)', color='white', fontsize=12)
         ax.set_title('LiDAR 3D Point Cloud - Indoor Environment',
                      color='white', fontsize=16, pad=20)
 
@@ -344,16 +345,16 @@ class AdvancedLiDARVisualizer:
         fig, ax = plt.subplots(figsize=(12, 12), facecolor='black')
         ax.set_facecolor('black')
 
-        scatter = ax.scatter(x, y,
+        scatter = ax.scatter(x, z,
                              c=brightness,
                              cmap='viridis',
                              s=self.render_config['point_size'],
                              alpha=0.8,
                              edgecolors='none')
 
-        ax.set_xlabel('X (meters)', color='white', fontsize=12)
-        ax.set_ylabel('Y (meters)', color='white', fontsize=12)
-        ax.set_title('LiDAR Side View', color='white', fontsize=16)
+        ax.set_xlabel('X - Depth (meters)', color='white', fontsize=12)
+        ax.set_ylabel('Z - Height (meters)', color='white', fontsize=12)
+        ax.set_title('LiDAR Side View (Depth vs Height)', color='white', fontsize=16)
         ax.grid(True, alpha=0.3, color='gray')
         ax.tick_params(colors='white')
         ax.set_aspect('equal')
@@ -401,9 +402,9 @@ class AdvancedLiDARVisualizer:
                              alpha=0.8,
                              edgecolors='none')
 
-        ax.set_xlabel('X (meters)', color='white', fontsize=12)
-        ax.set_ylabel('Y (meters)', color='white', fontsize=12)
-        ax.set_title('LiDAR Top-Down View', color='white', fontsize=16)
+        ax.set_xlabel('X - Depth (meters)', color='white', fontsize=12)
+        ax.set_ylabel('Y - Horizontal (meters)', color='white', fontsize=12)
+        ax.set_title('LiDAR Top-Down View (Depth vs Horizontal)', color='white', fontsize=16)
         ax.grid(True, alpha=0.3, color='gray')
         ax.tick_params(colors='white')
         ax.set_aspect('equal')
@@ -450,16 +451,19 @@ class AdvancedLiDARVisualizer:
         print("2. Creating side view...")
         self.create_side_view(f"{output_dir}/lidar_side_view.png")
 
-        print("3. Creating perspective views...")
+        print("3. Creating top-down view...")
+        self.create_top_down_view(f"{output_dir}/lidar_topdown.png")
+
+        print("4. Creating perspective views...")
         self._create_multiple_perspectives(output_dir)
 
-        print("4. Creating distance analysis...")
+        print("5. Creating distance analysis...")
         self._create_distance_analysis(output_dir)
 
-        print("5. Creating density heatmap...")
+        print("6. Creating density heatmap...")
         self._create_density_heatmap(output_dir)
 
-        print("6. Generating statistics...")
+        print("7. Generating statistics...")
         self._generate_statistics_report(output_dir)
 
         print(f"Complete analysis dashboard created in {output_dir}/")
@@ -471,24 +475,25 @@ class AdvancedLiDARVisualizer:
             return
 
         x, y, z, distances = self.cartesian_points.T
+        brightness = self._calculate_brightness_values(distances)
 
         perspectives = [
             ('front', 0, 0),
-            ('top down', 0, 90),
+            ('topdown', 90, 0),
             ('diagonal', 30, 45),
-            ('overhead', 90, 0)
+            ('overhead', 80, 90)
         ]
 
         for name, elev, azim in perspectives:
             fig = plt.figure(figsize=(10, 8), facecolor='black')
             ax = fig.add_subplot(111, projection='3d', facecolor='black')
 
-            scatter = ax.scatter(x, y, z, c=distances,
+            scatter = ax.scatter(x, y, z, c=brightness,
                                  cmap='viridis', s=1, alpha=0.8)
 
-            ax.set_xlabel('X (meters)', color='white')
-            ax.set_ylabel('Y (meters)', color='white')
-            ax.set_zlabel('Z (meters)', color='white')
+            ax.set_xlabel('X - Depth (meters)', color='white')
+            ax.set_ylabel('Y - Horizontal (meters)', color='white')
+            ax.set_zlabel('Z - Height (meters)', color='white')
             ax.set_title(f'LiDAR {name.title()} View',
                          color='white', fontsize=14)
             ax.tick_params(colors='white')
@@ -523,8 +528,8 @@ class AdvancedLiDARVisualizer:
         ax1.set_facecolor('black')
         ax1.tick_params(colors='white')
 
-        y_coords = self.cartesian_points[:, 1]
-        ax2.scatter(distances, y_coords, c=distances,
+        z_coords = self.cartesian_points[:, 2]
+        ax2.scatter(distances, z_coords, c=distances,
                     cmap='viridis', s=1, alpha=0.6)
         ax2.set_xlabel('Distance (meters)', color='white')
         ax2.set_ylabel('Height (meters)', color='white')
@@ -543,7 +548,7 @@ class AdvancedLiDARVisualizer:
         if self.cartesian_points is None:
             return
 
-        x, y = self.cartesian_points[:, 0], self.cartesian_points[:, 2]
+        x, y = self.cartesian_points[:, 0], self.cartesian_points[:, 1]
 
         fig, ax = plt.subplots(figsize=(10, 8), facecolor='black')
         ax.set_facecolor('black')
@@ -554,9 +559,9 @@ class AdvancedLiDARVisualizer:
                        extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]],
                        cmap='hot', alpha=0.8)
 
-        ax.set_xlabel('X (meters)', color='white')
-        ax.set_ylabel('Z (meters)', color='white')
-        ax.set_title('Point Density Heatmap (X-Z Plane)', color='white')
+        ax.set_xlabel('X - Depth (meters)', color='white')
+        ax.set_ylabel('Y - Horizontal (meters)', color='white')
+        ax.set_title('Point Density Heatmap (Top-Down View)', color='white')
         ax.tick_params(colors='white')
 
         cbar = plt.colorbar(im, ax=ax)
@@ -587,30 +592,34 @@ class AdvancedLiDARVisualizer:
             'spatial_extent_x': np.max(x) - np.min(x),
             'spatial_extent_y': np.max(y) - np.min(y),
             'spatial_extent_z': np.max(z) - np.min(z),
-            'point_density': len(self.cartesian_points) / ((np.max(x) - np.min(x)) * (np.max(z) - np.min(z)))
+            'point_density': len(self.cartesian_points) / ((np.max(x) - np.min(x)) * (np.max(y) - np.min(y)))
         }
 
         with open(f"{output_dir}/scan_statistics.txt", 'w') as f:
             f.write("LiDAR Scan Statistics Report\n")
             f.write("=" * 40 + "\n\n")
+            f.write("Coordinate System:\n")
+            f.write("  X-axis: Depth (forward/backward)\n")
+            f.write("  Y-axis: Horizontal (left/right)\n") 
+            f.write("  Z-axis: Height (up/down)\n\n")
             f.write(f"Total Points: {stats['total_points']:,}\n")
             f.write(
                 f"Distance Range: {stats['distance_min']:.2f} - {stats['distance_max']:.2f} meters\n")
             f.write(
                 f"Average Distance: {stats['distance_mean']:.2f} ± {stats['distance_std']:.2f} meters\n")
             f.write(
-                f"Spatial Extent (X): {stats['spatial_extent_x']:.2f} meters\n")
+                f"Spatial Extent (X - Depth): {stats['spatial_extent_x']:.2f} meters\n")
             f.write(
-                f"Spatial Extent (Y): {stats['spatial_extent_y']:.2f} meters\n")
+                f"Spatial Extent (Y - Horizontal): {stats['spatial_extent_y']:.2f} meters\n")
             f.write(
-                f"Spatial Extent (Z): {stats['spatial_extent_z']:.2f} meters\n")
-            f.write(f"Point Density: {stats['point_density']:.1f} points/m²\n")
+                f"Spatial Extent (Z - Height): {stats['spatial_extent_z']:.2f} meters\n")
+            f.write(f"Point Density (Top-down): {stats['point_density']:.1f} points/m²\n")
 
         print(f"Statistics report saved to {output_dir}/scan_statistics.txt")
 
 
 def run_complete_pipeline(unity_exe_path=None, csv_file=None, output_dir="lidar_visualization_output"):
-    """Run complete LiDAR visualization pipeline"""
+    """run complete LiDAR visualization pipeline"""
     print("Starting Advanced LiDAR Visualization Pipeline")
     print("=" * 60)
 
