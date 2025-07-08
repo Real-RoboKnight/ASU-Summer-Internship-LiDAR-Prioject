@@ -95,7 +95,7 @@ class AdvancedLiDARVisualizer:
         initial_count = len(df)
 
         df = df.dropna()
-        df = df[(df['distance'] > 0) & (df['distance'] < 100)]
+        # df = df[(df['distance'] > 0) & (df['distance'] < 100)] # TODO: Adjust distance range based on your data
         df = df[(df['theta'] >= 0) & (df['theta'] <= 2*np.pi)]
         df = df[(df['phi'] >= 0) & (df['phi'] <= np.pi)]
 
@@ -196,7 +196,7 @@ class AdvancedLiDARVisualizer:
         brightness = self._calculate_brightness_values(distances)
 
         fig = go.Figure(data=[go.Scatter3d(
-            x=x, y=y, z=z,
+            x=x, y=z, z=y,
             mode='markers',
             marker=dict(
                 size=2,
@@ -327,6 +327,55 @@ class AdvancedLiDARVisualizer:
 
         plt.close(fig)
         return fig
+    
+    def create_side_view(self, save_path=None):
+        if self.cartesian_points is None:
+            print("No processed data available.")
+            return None
+
+        print("Creating side view...")
+
+        print(self.cartesian_points)
+        x, y, z, distances = self.cartesian_points.T
+
+        # Calculate brightness values that decrease with distance
+        brightness = self._calculate_brightness_values(distances)
+
+        fig, ax = plt.subplots(figsize=(12, 12), facecolor='black')
+        ax.set_facecolor('black')
+
+        scatter = ax.scatter(x, y,
+                             c=brightness,
+                             cmap='viridis',
+                             s=self.render_config['point_size'],
+                             alpha=0.8,
+                             edgecolors='none')
+
+        ax.set_xlabel('X (meters)', color='white', fontsize=12)
+        ax.set_ylabel('Y (meters)', color='white', fontsize=12)
+        ax.set_title('LiDAR Side View', color='white', fontsize=16)
+        ax.grid(True, alpha=0.3, color='gray')
+        ax.tick_params(colors='white')
+        ax.set_aspect('equal')
+
+        cbar = plt.colorbar(scatter, ax=ax)
+        cbar.set_label('Brightness (Distance-based)',
+                       rotation=270, labelpad=15, color='white')
+        cbar.ax.yaxis.set_tick_params(color='white')
+        cbar.ax.yaxis.label.set_color('white')
+        plt.setp(plt.getp(cbar.ax.axes, 'yticklabels'), color='white')
+
+        plt.tight_layout()
+
+        if save_path:
+            plt.savefig(save_path,
+                        dpi=self.render_config['dpi'],
+                        bbox_inches='tight',
+                        facecolor='black')
+            print(f"Side view saved to {save_path}")
+
+        plt.close(fig)
+        return fig
 
     def create_top_down_view(self, save_path=None):
         """Create top-down 2D view"""
@@ -398,8 +447,8 @@ class AdvancedLiDARVisualizer:
             interactive=True
         )
 
-        print("2. Creating top-down view...")
-        self.create_top_down_view(f"{output_dir}/lidar_topdown.png")
+        print("2. Creating side view...")
+        self.create_side_view(f"{output_dir}/lidar_side_view.png")
 
         print("3. Creating perspective views...")
         self._create_multiple_perspectives(output_dir)
@@ -425,7 +474,7 @@ class AdvancedLiDARVisualizer:
 
         perspectives = [
             ('front', 0, 0),
-            ('side', 0, 90),
+            ('top down', 0, 90),
             ('diagonal', 30, 45),
             ('overhead', 90, 0)
         ]
