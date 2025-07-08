@@ -9,7 +9,7 @@ import numpy as np
 class LiDARWrapper:
     def __init__(self, unity_exe_path, output_csv="/Users/ayaan/coding/ASU-Summer-Internship-LiDAR-Prioject/Unity Project/Virtual Camera/Virtual Sensor/outputFile.csv"):
         self.unity_exe = unity_exe_path
-        self.output_csv = output_csv
+        self.output_csv = unity_exe_path
         self.scan_data = None
 
     def run_unity_scan(self, timeout=300):
@@ -108,8 +108,8 @@ class LiDARWrapper:
         print("Starting LiDAR Pipeline")
 
         # Run Unity scan
-        if not self.run_unity_scan(timeout):
-            return False
+        # if not self.run_unity_scan(timeout):
+        #     return False
 
         # Load data
         if not self.load_data():

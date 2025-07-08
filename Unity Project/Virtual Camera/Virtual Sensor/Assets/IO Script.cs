@@ -2,17 +2,19 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class IOScript : MonoBehaviour
 {
     public String pythonPath;
     public String pythonFile;
     public String outputPath;
-    String tmpPath;
+    public const int PERIOD = 10; // capture data for ten frames then call python
+
+    string tmpPath;
 
     const double ANGULAR_RESOLUTION = Math.PI / 512;
     const double TWO_PI = 2.0 * Math.PI;
-    public const int PERIOD = 10; // capture data for ten frames then call python
 
     // TODO: replace hard coded file path
     Camera unityCamera;
@@ -21,10 +23,10 @@ public class IOScript : MonoBehaviour
 
     void Start()
     {
-        String tmpPath = Path.GetTempFileName();
-        Process.Start(@"/usr/bin/rm", $"-rf \"{outputPath}\"");
+        tmpPath = Path.GetTempFileName();
+        // Process.Start(@"/usr/bin/rm", $"-rf \"{outputPath}\"");
 
-        print("start");
+        print("start " + tmpPath);
         writer = File.CreateText(tmpPath);
         writer.WriteLine("Frame Number,theta,phi,distance");
         unityCamera = Camera.main;
@@ -34,6 +36,7 @@ public class IOScript : MonoBehaviour
         {
             thetaBounds[i] = 0 + i * (TWO_PI / PERIOD);
         }
+        Directory.Delete(outputPath, true);
     }
 
     Vector3 CalculateAngle(double theta, double phi)
@@ -77,13 +80,14 @@ public class IOScript : MonoBehaviour
             writer.Flush();
             writer.Close();
             print(
-                $"Called Python.\n {pythonPath}\t\"{pythonFile}\" --csv-file \"{tmpPath}\" --output-dir \"{outputPath}/{Time.frameCount}/\""
+                $"Called Python.\n {pythonPath}\t\"{pythonFile}\" --csv-file \"{tmpPath}\" --output-dir \"{outputPath}{Time.frameCount}/\""
             );
+
             Process.Start(
                 pythonPath,
-                $"\"{pythonFile}\" --csv-file \"{tmpPath}\" --output-dir \"{outputPath}/{Time.frameCount}/\""
+                $"\"{pythonFile}\" --csv-file \"{tmpPath}\" --output-dir \"{outputPath}{Time.frameCount}/\""
             );
-            File.Delete(tmpPath);
+            // File.Delete(tmpPath);
 
             tmpPath = Path.GetTempFileName();
             writer = File.CreateText(tmpPath);
@@ -120,4 +124,33 @@ public class IOScript : MonoBehaviour
     }
 
     void OnDestroy() { }
+
+    public void Move(InputAction.CallbackContext callbackConstant)
+    {
+        print(callbackConstant);
+        Vector2 direction = callbackConstant.ReadValue<Vector2>();
+        Camera.main.transform.position =
+            Camera.main.transform.position
+            + Camera.main.transform.rotation * new Vector3(direction.x, 0, direction.y);
+    }
+
+    public void Jump(InputAction.CallbackContext callbackConstant)
+    {
+        print(callbackConstant);
+        Camera.main.transform.position = Camera.main.transform.position + transform.up;
+    }
+
+    public void Crouch(InputAction.CallbackContext callbackConstant)
+    {
+        print(callbackConstant);
+        Camera.main.transform.position = Camera.main.transform.position - transform.up;
+    }
+
+    public void Look(InputAction.CallbackContext callbackConstant)
+    {
+        print(callbackConstant);
+        Vector2 direction = callbackConstant.ReadValue<Vector2>();
+        UnityEngine.Debug.Log(direction);
+        Camera.main.transform.Rotate(new Vector3(-(direction.y / 50f), direction.x / 50f, 0));
+    }
 }

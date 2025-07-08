@@ -297,13 +297,13 @@ def run_scan_and_visualize(unity_exe_path, timeout=300, output_dir="lidar_plots"
 def main():
     """main function w/ terminal use"""
     print("LiDAR Depth Visualizer")
-    print("Usage: python lidar_depth_visualizer.py <unity_exe_path>")
+    print("Usage: python lidar_depth_visualizer.py <csv_file_path>")
 
     if len(sys.argv) < 2:
         sys.exit(1)
 
-    unity_exe = sys.argv[1]
-    success = run_scan_and_visualize(unity_exe)
+    csv_file_path = sys.argv[1]
+    success = run_scan_and_visualize(csv_file_path)
     sys.exit(0 if success else 1)
 
 
@@ -314,7 +314,7 @@ if __name__ == "__main__":
 # usage examples
 """
 # complete pipeline w/ unity scan
-python lidar_depth_visualizer.py "pathtounity"
+python lidar_depth_visualizer.py "csv_file_path"
 
 # in program
 from basic_lidar_wrapper import LiDARWrapper
