@@ -2,13 +2,8 @@ import os
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 import plotly.graph_objects as go
-import plotly.express as px
-from plotly.subplots import make_subplots
 import pandas as pd
-from scipy.spatial import cKDTree
-from scipy.ndimage import gaussian_filter
 from sklearn.cluster import DBSCAN
 from sklearn.preprocessing import StandardScaler
 import argparse
@@ -551,7 +546,6 @@ class AdvancedLiDARVisualizer:
 
         perspectives = [
             ('front', 0, 0),
-            ('topdown', 90, 0),
             ('diagonal', 30, 45),
             ('overhead', 80, 90)
         ]
