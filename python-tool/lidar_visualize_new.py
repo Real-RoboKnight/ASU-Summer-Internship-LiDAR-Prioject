@@ -145,28 +145,29 @@ class AdvancedLiDARVisualizer:
             f"Outlier removal: {np.sum(~main_cluster_mask)} outliers removed")
 
     def _calculate_brightness_values(self, distances):
-        """calculate brightness values that decrease with distance"""
-        # Normalize distances to 0-1 range
+        """calculate brightness values that decrease more intensively with distance"""
+        # normalize distances to 0-1 range
         min_dist = np.min(distances)
         max_dist = np.max(distances)
 
-        # Avoid division by zero
+        # avoid division by zero
         if max_dist == min_dist:
             return np.ones_like(distances)
 
         # Normalize distances (0 = closest, 1 = farthest)
         normalized_distances = (distances - min_dist) / (max_dist - min_dist)
 
-        # Invert the values so closer points are brighter (1 = brightest, 0 = dimmest)
+        # invert the values so closer points are brighter (1 = brightest, 0 = dimmest)
         brightness = 1.0 - normalized_distances
 
-        # Apply a power function to enhance the contrast
-        # Values closer to 1 make the brightness fall off more gradually
-        # Values closer to 0 make the brightness fall off more sharply
-        brightness = np.power(brightness, 0.7)
+        # apply greater contrastfor distances
+        # lower values make the brightness fall off more sharply with distance
+        # changed from 0.7 to 0.3 for much more intensive falloff
+        brightness = np.power(brightness, 0.3)
 
-        # Ensure minimum brightness so points don't disappear completely
-        min_brightness = 0.2
+        # reduce minimum brightness so distant points are much dimmer
+        # changed from 0.2 to 0.05 for more dramatic contrast
+        min_brightness = 0.05
         brightness = min_brightness + brightness * (1.0 - min_brightness)
 
         return brightness
@@ -336,25 +337,58 @@ class AdvancedLiDARVisualizer:
 
         print("Creating side view...")
 
-        print(self.cartesian_points)
         x, y, z, distances = self.cartesian_points.T
+
+        # Calculate optimal figure size and point spacing based on data range
+        x_range = np.max(x) - np.min(x)
+        z_range = np.max(z) - np.min(z)
+        max_range = max(x_range, z_range)
+        
+        # Adaptive figure sizing - larger figures for larger ranges
+        base_size = 12
+        if max_range > 100:
+            # For very large ranges, scale up figure size significantly
+            scale_factor = min(max_range / 50, 4.0)  # Cap at 4x scaling
+            fig_size = int(base_size * scale_factor)
+        elif max_range > 50:
+            # Moderate scaling for medium ranges
+            scale_factor = max_range / 50
+            fig_size = int(base_size * scale_factor)
+        else:
+            fig_size = base_size
+            
+        # Adaptive point sizing - smaller points for larger ranges to reduce overlap
+        if max_range > 200:
+            point_size = max(self.render_config['point_size'] * 0.3, 1.0)
+        elif max_range > 100:
+            point_size = max(self.render_config['point_size'] * 0.5, 2.0)
+        elif max_range > 50:
+            point_size = max(self.render_config['point_size'] * 0.7, 5.0)
+        else:
+            point_size = self.render_config['point_size']
+            
+        print(f"Side view range: X={x_range:.1f}m, Z={z_range:.1f}m, Max={max_range:.1f}m")
+        print(f"Adaptive sizing: Figure={fig_size}x{fig_size}, Point size={point_size:.1f}")
 
         # Calculate brightness values that decrease with distance
         brightness = self._calculate_brightness_values(distances)
 
-        fig, ax = plt.subplots(figsize=(12, 12), facecolor='black')
+        fig, ax = plt.subplots(figsize=(fig_size, fig_size), facecolor='black')
         ax.set_facecolor('black')
 
         scatter = ax.scatter(x, z,
                              c=brightness,
                              cmap='viridis',
-                             s=self.render_config['point_size'],
+                             s=point_size,
                              alpha=0.8,
                              edgecolors='none')
 
         ax.set_xlabel('X - Depth (meters)', color='white', fontsize=12)
         ax.set_ylabel('Z - Height (meters)', color='white', fontsize=12)
-        ax.set_title('LiDAR Side View (Depth vs Height)', color='white', fontsize=16)
+        
+        # Add range info to title for context
+        title_with_range = f'LiDAR Side View (Depth vs Height)\nRange: {max_range:.1f}m, Points: {len(x):,}'
+        ax.set_title(title_with_range, color='white', fontsize=14)
         ax.grid(True, alpha=0.3, color='gray')
         ax.tick_params(colors='white')
         ax.set_aspect('equal')
@@ -369,48 +403,84 @@ class AdvancedLiDARVisualizer:
         plt.tight_layout()
 
         if save_path:
+            # Increase DPI for larger ranges to maintain detail
+            adaptive_dpi = min(self.render_config['dpi'] * (max_range / 50), 600) if max_range > 50 else self.render_config['dpi']
             plt.savefig(save_path,
-                        dpi=self.render_config['dpi'],
+                        dpi=int(adaptive_dpi),
                         bbox_inches='tight',
                         facecolor='black')
-            print(f"Side view saved to {save_path}")
+            print(f"Side view saved to {save_path} (DPI: {int(adaptive_dpi)})")
 
         plt.close(fig)
         return fig
 
-    def create_top_down_view(self, save_path=None):
-        """Create top-down 2D view"""
+    def create_top_down_view(self, save_path=None, detail_focus_range=50.0):
+        """Create top-down 2D view with adaptive scaling for fine details"""
         if self.cartesian_points is None:
             print("No processed data available.")
             return None
 
         print("Creating top-down view...")
 
-        print(self.cartesian_points)
         x, y, z, distances = self.cartesian_points.T
 
-        # Calculate brightness values that decrease with distance
-        brightness = self._calculate_brightness_values(distances)
+        # Calculate optimal figure size and point spacing based on data range
+        x_range = np.max(x) - np.min(x)
+        y_range = np.max(y) - np.min(y)
+        max_range = max(x_range, y_range)
+        
+        # Adaptive figure sizing - larger figures for larger ranges
+        base_size = 12
+        if max_range > 100:
+            # For very large ranges, scale up figure size significantly
+            scale_factor = min(max_range / 50, 4.0)  # Cap at 4x scaling
+            fig_size = int(base_size * scale_factor)
+        elif max_range > 50:
+            # Moderate scaling for medium ranges
+            scale_factor = max_range / 50
+            fig_size = int(base_size * scale_factor)
+        else:
+            fig_size = base_size
+            
+        # Adaptive point sizing - smaller points for larger ranges to reduce overlap
+        if max_range > 200:
+            point_size = max(self.render_config['point_size'] * 0.3, 1.0)
+        elif max_range > 100:
+            point_size = max(self.render_config['point_size'] * 0.5, 2.0)
+        elif max_range > 50:
+            point_size = max(self.render_config['point_size'] * 0.7, 5.0)
+        else:
+            point_size = self.render_config['point_size']
+            
+        print(f"Data range: X={x_range:.1f}m, Y={y_range:.1f}m, Max={max_range:.1f}m")
+        print(f"Adaptive sizing: Figure={fig_size}x{fig_size}, Point size={point_size:.1f}")
 
-        fig, ax = plt.subplots(figsize=(12, 12), facecolor='black')
+        # Use height (z-coordinate) for coloring instead of distance
+        height_colors = z
+
+        fig, ax = plt.subplots(figsize=(fig_size, fig_size), facecolor='black')
         ax.set_facecolor('black')
 
         scatter = ax.scatter(x, y,
-                             c=brightness,
+                             c=height_colors,
                              cmap='viridis',
-                             s=self.render_config['point_size'],
+                             s=point_size,
                              alpha=0.8,
                              edgecolors='none')
 
         ax.set_xlabel('X - Depth (meters)', color='white', fontsize=12)
         ax.set_ylabel('Y - Horizontal (meters)', color='white', fontsize=12)
-        ax.set_title('LiDAR Top-Down View (Depth vs Horizontal)', color='white', fontsize=16)
+        ax.set_title('LiDAR Top-Down View (Colored by Height)', color='white', fontsize=16)
         ax.grid(True, alpha=0.3, color='gray')
         ax.tick_params(colors='white')
         ax.set_aspect('equal')
 
+        # Add range info to title for context
+        title_with_range = f'LiDAR Top-Down View (Colored by Height)\nRange: {max_range:.1f}m, Points: {len(x):,}'
+        ax.set_title(title_with_range, color='white', fontsize=14)
+
         cbar = plt.colorbar(scatter, ax=ax)
-        cbar.set_label('Brightness (Distance-based)',
+        cbar.set_label('Height (Z-coordinate in meters)',
                        rotation=270, labelpad=15, color='white')
         cbar.ax.yaxis.set_tick_params(color='white')
         cbar.ax.yaxis.label.set_color('white')
@@ -419,11 +489,13 @@ class AdvancedLiDARVisualizer:
         plt.tight_layout()
 
         if save_path:
+            # Increase DPI for larger ranges to maintain detail
+            adaptive_dpi = min(self.render_config['dpi'] * (max_range / 50), 600) if max_range > 50 else self.render_config['dpi']
             plt.savefig(save_path,
-                        dpi=self.render_config['dpi'],
+                        dpi=int(adaptive_dpi),
                         bbox_inches='tight',
                         facecolor='black')
-            print(f"Top-down view saved to {save_path}")
+            print(f"Top-down view saved to {save_path} (DPI: {int(adaptive_dpi)})")
 
         plt.close(fig)
         return fig
@@ -649,9 +721,9 @@ def run_complete_pipeline(unity_exe_path=None, csv_file=None, output_dir="lidar_
 
 
 def main():
-    """Main function with command-line interface"""
+    """main function w/ command-line interface"""
     parser = argparse.ArgumentParser(
-        description="Advanced LiDAR 3D Visualization Tool",
+        description="advanced LiDAR 3D Visualization Tool",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -669,32 +741,32 @@ Examples:
     parser.add_argument(
         '--unity-exe', '--unity', '-u',
         type=str,
-        help='Path to Unity executable for LiDAR simulation'
+        help='path to Unity executable for LiDAR simulation'
     )
 
     parser.add_argument(
         '--csv-file', '--csv', '-c',
         type=str,
-        help='Path to CSV file containing LiDAR data (columns: distance, theta, phi)'
+        help='path to CSV file containing LiDAR data (columns: distance, theta, phi)'
     )
 
     parser.add_argument(
         '--output-dir', '--output', '-o',
         type=str,
         default='lidar_visualization_output',
-        help='Output directory for visualizations (default: lidar_visualization_output)'
+        help='output directory for visualizations (default: lidar_visualization_output)'
     )
 
     parser.add_argument(
         '--interactive', '-i',
         action='store_true',
-        help='Create interactive plots (requires plotly)'
+        help='create interactive plots (requires plotly)'
     )
 
     args = parser.parse_args()
 
     if not args.unity_exe and not args.csv_file:
-        print("Error: Must specify either --unity-exe or --csv-file")
+        print("error: must specify either --unity-exe or --csv-file")
         parser.print_help()
         sys.exit(1)
 
