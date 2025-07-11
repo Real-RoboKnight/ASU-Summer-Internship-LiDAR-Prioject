@@ -1,0 +1,15 @@
+LiDAR Scan Statistics Report
+========================================
+
+Coordinate System:
+  X-axis: Depth (forward/backward)
+  Y-axis: Horizontal (left/right)
+  Z-axis: Height (up/down)
+
+Total Points: 8,601,600
+Distance Range: 0.00 - 783.53 meters
+Average Distance: 17.67 ± 26.26 meters
+Spatial Extent (X - Depth): 1164.53 meters
+Spatial Extent (Y - Horizontal): 133.31 meters
+Spatial Extent (Z - Height): 57.57 meters
+Point Density (Top-down): 55.4 points/m²

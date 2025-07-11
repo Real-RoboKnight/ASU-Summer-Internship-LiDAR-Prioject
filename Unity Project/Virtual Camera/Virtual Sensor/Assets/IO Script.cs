@@ -9,11 +9,11 @@ public class IOScript : MonoBehaviour
     public String pythonPath;
     public String pythonFile;
     public String outputPath;
-    public const int PERIOD = 30; // capture data for ten frames then call python
+    public const int PERIOD = 120; // capture data for ten frames then call python
 
     string tmpPath;
 
-    const double ANGULAR_RESOLUTION = Math.PI / 512;
+    const double ANGULAR_RESOLUTION = Math.PI / 2048;
     const double TWO_PI = 2.0 * Math.PI;
 
     // TODO: replace hard coded file path
@@ -69,8 +69,6 @@ public class IOScript : MonoBehaviour
 
     void Update()
     {
-        print("frame");
-
         // After setup, wait till the counter resets.
         if (Time.frameCount < PERIOD)
             return;
@@ -127,7 +125,6 @@ public class IOScript : MonoBehaviour
 
     public void Move(InputAction.CallbackContext callbackConstant)
     {
-        print(callbackConstant);
         Vector2 direction = callbackConstant.ReadValue<Vector2>();
         Camera.main.transform.position =
             Camera.main.transform.position
@@ -136,19 +133,16 @@ public class IOScript : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext callbackConstant)
     {
-        print(callbackConstant);
         Camera.main.transform.position = Camera.main.transform.position + transform.up;
     }
 
     public void Crouch(InputAction.CallbackContext callbackConstant)
     {
-        print(callbackConstant);
         Camera.main.transform.position = Camera.main.transform.position - transform.up;
     }
 
     public void Look(InputAction.CallbackContext callbackConstant)
     {
-        print(callbackConstant);
         Vector2 direction = callbackConstant.ReadValue<Vector2>();
         UnityEngine.Debug.Log(direction);
         Camera.main.transform.Rotate(new Vector3(-(direction.y / 50f), direction.x / 50f, 0));
