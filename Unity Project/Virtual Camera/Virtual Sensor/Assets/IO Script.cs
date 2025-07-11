@@ -9,7 +9,7 @@ public class IOScript : MonoBehaviour
     public String pythonPath;
     public String pythonFile;
     public String outputPath;
-    public const int PERIOD = 10; // capture data for ten frames then call python
+    public const int PERIOD = 30; // capture data for ten frames then call python
 
     string tmpPath;
 
